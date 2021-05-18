@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.metita.net/Stuffs/Table/TableCP.htm -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeTiTa</title>
+	
+	<!-- The css that make the table run        -->
+	<link rel="stylesheet" href="./css/engine.css">	
+	
+	<!-- The css style can be removed or changed -->
+	<link rel="stylesheet" href="./css/style.css">
+	
+	<!-- this is the 'sort' engine            -->
+	<script src="./js/Vi.Table.sort.js"></script>
+	
+	<script>
+	
+		// This is an example of a custom sort. Despite the values in this column are string,  
+		// the column will be ordered as they were numbers (instrad of lessically)
+		function sortCustom(th) {
+			try {
+				// the column will be ordered following this order. (this array 'specializes' the custom sort)
+				var numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+				Vi.Table.sort.custom(th, numbers);
+			}
+			catch (jse) {
+				console.error(jse);
+			}
+		}
+
+	
+	</script>
+
+</head>
+<body style="background-color:#ccc;">
+
+
+<div style="" class="TableContainer">
+<table id="tbl92" border="0" class="tableScroll" align="center">
+    <thead>
+        <tr>
+            <th onclick="Vi.Table.sort.number(this)" title="Number will be sortes as number.">n</th>
+            <th onclick="sortCustom(this)" title="Strings will be ordered like the number they represent: custom sort.">number</th>
+			<th onclick="Vi.Table.sort.string(this)" title="Strings will be ordered lessically.">Strings</th>
+            <th onclick="Vi.Table.sort.string(this)" title="Strings will be ordered lessically.">Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class=""><span>1</span></td>
+            <td class=""><span>two</span></td>
+            <td class=""><span>two</span></td>
+            <td class="ellipsis"><span>b</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>2</span></td>
+            <td class=""><span>eight</span></td>
+            <td class=""><span>eight</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>3</span></td>
+            <td class=""><span>nine</span></td>
+            <td class=""><span>nine</span></td>
+            <td class="ellipsis"><span>a</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>five</span></td>
+            <td class=""><span>five</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>six</span></td>
+            <td class=""><span>six</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>1</span></td>
+            <td class=""><span>four</span></td>
+            <td class=""><span>four</span></td>
+            <td class="ellipsis"><span>b</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>2</span></td>
+            <td class=""><span>one</span></td>
+            <td class=""><span>one</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>3</span></td>
+            <td class=""><span>zero</span></td>
+            <td class=""><span>zero</span></td>
+            <td class="ellipsis"><span>a</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>four</span></td>
+            <td class=""><span>four</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>zero</span></td>
+            <td class=""><span>zero</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>1</span></td>
+            <td class=""><span>three</span></td>
+            <td class=""><span>three</span></td>
+            <td class="ellipsis"><span>b</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>2</span></td>
+            <td class=""><span>one</span></td>
+            <td class=""><span>one</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>3</span></td>
+            <td class=""><span>six</span></td>
+            <td class=""><span>six</span></td>
+            <td class="ellipsis"><span>a</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>five</span></td>
+            <td class=""><span>five</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>seven</span></td>
+            <td class=""><span>seven</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>eight</span></td>
+            <td class=""><span>eight</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>1</span></td>
+            <td class=""><span>two</span></td>
+            <td class=""><span>two</span></td>
+            <td class="ellipsis"><span>b</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>2</span></td>
+            <td class=""><span>one</span></td>
+            <td class=""><span>one</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>3</span></td>
+            <td class=""><span>nine</span></td>
+            <td class=""><span>nine</span></td>
+            <td class="ellipsis"><span>a</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>five</span></td>
+            <td class=""><span>five</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+        <tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>seven</span></td>
+            <td class=""><span>seven</span></td>
+            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
+        </tr>
+    </tbody>
+</table>
+
+</div>
+
+
+
+</body></html>
+
+
+
+
+
