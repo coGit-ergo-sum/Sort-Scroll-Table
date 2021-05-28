@@ -15,20 +15,53 @@
 	<script src="./js/Vi.Table.sort.js"></script>
 	
 	<script>
-	
+		
 		// This is an example of a custom sort. Despite the values in this column are string,  
 		// the column will be ordered as they were numbers (instead of lessically)
-		function sortCustom(th) {
+		function sortCustom1(th) {
 			try {
-				// the column will be ordered following this order. (this array 'specializes' the custom sort)
+			
+				// the column will be ordered following the same order the items are in the array. 
 				var numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-				Vi.Table.sort.custom(th, numbers);
+			
+				function getValue(tr, cellIndex) {
+					var value = tr.children[cellIndex].innerText.toLowerCase().trim();
+					return numbers.indexOf(value);
+				}
+			
+				Vi.Table.sort(th, getValue);
+
 			}
 			catch (jse) {
 				console.error(jse);
 			}
 		}
+		
+		
+		/**
+		* Here the column is sorted based on an atribute and not the value shown.
+		* That should highlight the fact the developer has an hight degree of 
+		* freedom on how implement the table and the data 
+		* At the end, the only constrain is that the function 'getValue' must
+		* return a sortable value.
+		*/
+		function sortCustom2(th) {
+			try {
+			
+				function getValue(tr, cellIndex) {
+					var child = tr.children[cellIndex];
+					var ticks = child.getAttribute("data-ticks");
+					var value = parseInt(ticks);
+					return value;
+				}
+			
+				Vi.Table.sort(th, getValue);
 
+			}
+			catch (jse) {
+				console.error(jse);
+			}
+		}
 	
 	</script>
 
@@ -41,139 +74,140 @@
     <thead>
         <tr>
             <th onclick="Vi.Table.sort.number(this)" title="Number will be sortes as number.">n</th>
-            <th onclick="sortCustom(this)" title="Strings will be ordered like the number they represent: custom sort.">number</th>
+            <th onclick="sortCustom1(this)" title="Strings will be ordered like the number they represent: custom sort.">number</th>
 			<th onclick="Vi.Table.sort.string(this)" title="Strings will be ordered lessically.">Strings</th>
+			<th onclick="sortCustom2(this)" title="The date is ordered based on 'ticks' stored as custom data.">date</th>
             <th onclick="Vi.Table.sort.string(this)" title="Strings will be ordered lessically.">Message</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td class=""><span>1</span></td>
-            <td class=""><span>two</span></td>
-            <td class=""><span>two</span></td>
-            <td class="ellipsis"><span>b</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>2</span></td>
-            <td class=""><span>eight</span></td>
-            <td class=""><span>eight</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>3</span></td>
-            <td class=""><span>nine</span></td>
-            <td class=""><span>nine</span></td>
-            <td class="ellipsis"><span>a</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>99</span></td>
-            <td class=""><span>five</span></td>
-            <td class=""><span>five</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>99</span></td>
-            <td class=""><span>six</span></td>
-            <td class=""><span>six</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
+    <tbody>       
+		<tr>
             <td class=""><span>1</span></td>
             <td class=""><span>four</span></td>
-            <td class=""><span>four</span></td>
+            <td class=""><span>four</span></td>			
+            <td class="" data-ticks="1607597819970"><span>10/12/2020</span></td>
             <td class="ellipsis"><span>b</span></td>
-        </tr>
-        <tr>
+        </tr><tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>four</span></td>
+            <td class=""><span>four</span></td>			
+            <td class="" data-ticks="1608375419970"><span>19/12/2020</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
+            <td class=""><span>2</span></td>
+            <td class=""><span>eight</span></td>
+            <td class=""><span>eight</span></td>			
+            <td class="" data-ticks="1609930619970"><span>06/01/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>eight</span></td>
+            <td class=""><span>eight</span></td>			
+            <td class="" data-ticks="1613386619971"><span>15/02/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>seven</span></td>
+            <td class=""><span>seven</span></td>			
+            <td class="" data-ticks="1616583419971"><span>24/03/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
+            <td class=""><span>1</span></td>
+            <td class=""><span>two</span></td>
+            <td class=""><span>two</span></td>			
+            <td class="" data-ticks="1617184619971"><span>31/03/2021</span></td>
+            <td class="ellipsis"><span>b</span></td>
+        </tr><tr>
+            <td class=""><span>3</span></td>
+            <td class=""><span>nine</span></td>
+            <td class=""><span>nine</span></td>			
+            <td class="" data-ticks="1617443819971"><span>03/04/2021</span></td>
+            <td class="ellipsis"><span>a</span></td>
+        </tr><tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>zero</span></td>
+            <td class=""><span>zero</span></td>			
+            <td class="" data-ticks="1623664619970"><span>14/06/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
             <td class=""><span>2</span></td>
             <td class=""><span>one</span></td>
+            <td class=""><span>one</span></td>			
+            <td class="" data-ticks="1625133419971"><span>01/07/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
+            <td class=""><span>1</span></td>
+            <td class=""><span>two</span></td>
+            <td class=""><span>two</span></td>			
+            <td class="" data-ticks="1625651819970"><span>07/07/2021</span></td>
+            <td class="ellipsis"><span>b</span></td>
+        </tr><tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>five</span></td>
+            <td class=""><span>five</span></td>			
+            <td class="" data-ticks="1625997419970"><span>11/07/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
+            <td class=""><span>99</span></td>
+            <td class=""><span>six</span></td>
+            <td class=""><span>six</span></td>			
+            <td class="" data-ticks="1630490219970"><span>01/09/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
+            <td class=""><span>2</span></td>
             <td class=""><span>one</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
+            <td class=""><span>one</span></td>			
+            <td class="" data-ticks="1630749419970"><span>04/09/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
             <td class=""><span>3</span></td>
-            <td class=""><span>zero</span></td>
-            <td class=""><span>zero</span></td>
+            <td class=""><span>six</span></td>
+            <td class=""><span>six</span></td>			
+            <td class="" data-ticks="1631440619970"><span>12/09/2021</span></td>
             <td class="ellipsis"><span>a</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>99</span></td>
-            <td class=""><span>four</span></td>
-            <td class=""><span>four</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>99</span></td>
-            <td class=""><span>zero</span></td>
-            <td class=""><span>zero</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
+        </tr><tr>
             <td class=""><span>1</span></td>
             <td class=""><span>three</span></td>
-            <td class=""><span>three</span></td>
+            <td class=""><span>three</span></td>			
+            <td class="" data-ticks="1631959019970"><span>18/09/2021</span></td>
             <td class="ellipsis"><span>b</span></td>
-        </tr>
-        <tr>
+        </tr><tr>
             <td class=""><span>2</span></td>
             <td class=""><span>one</span></td>
-            <td class=""><span>one</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
+            <td class=""><span>one</span></td>			
+            <td class="" data-ticks="1632045419970"><span>19/09/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
             <td class=""><span>3</span></td>
-            <td class=""><span>six</span></td>
-            <td class=""><span>six</span></td>
+            <td class=""><span>zero</span></td>
+            <td class=""><span>zero</span></td>			
+            <td class="" data-ticks="1632909419970"><span>29/09/2021</span></td>
             <td class="ellipsis"><span>a</span></td>
-        </tr>
-        <tr>
+        </tr><tr>
             <td class=""><span>99</span></td>
             <td class=""><span>five</span></td>
+            <td class=""><span>five</span></td>			
+            <td class="" data-ticks="1635155819970"><span>25/10/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
+            <td class=""><span>99</span></td>
             <td class=""><span>five</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
+            <td class=""><span>five</span></td>			
+            <td class="" data-ticks="1635677819971"><span>31/10/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
             <td class=""><span>99</span></td>
             <td class=""><span>seven</span></td>
-            <td class=""><span>seven</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>99</span></td>
-            <td class=""><span>eight</span></td>
-            <td class=""><span>eight</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>1</span></td>
-            <td class=""><span>two</span></td>
-            <td class=""><span>two</span></td>
-            <td class="ellipsis"><span>b</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>2</span></td>
-            <td class=""><span>one</span></td>
-            <td class=""><span>one</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
+            <td class=""><span>seven</span></td>			
+            <td class="" data-ticks="1637146619971"><span>17/11/2021</span></td>
+            <td class="ellipsis"><span>When Text is too large for the cell, ellipsis will be shown.</span></td>
+        </tr><tr>
             <td class=""><span>3</span></td>
             <td class=""><span>nine</span></td>
-            <td class=""><span>nine</span></td>
+            <td class=""><span>nine</span></td>			
+            <td class="" data-ticks="1637492219970"><span>21/11/2021</span></td>
             <td class="ellipsis"><span>a</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>99</span></td>
-            <td class=""><span>five</span></td>
-            <td class=""><span>five</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-        <tr>
-            <td class=""><span>99</span></td>
-            <td class=""><span>seven</span></td>
-            <td class=""><span>seven</span></td>
-            <td class="ellipsis"><span>This Text Overflows and is too large for its cell.</span></td>
-        </tr>
-    </tbody>
+        </tr></tbody>
 </table>
 
 </div>
@@ -181,6 +215,7 @@
 
 
 </body></html>
+
 
 
 
